@@ -65,6 +65,32 @@ Why tidyverse?
 library(tidyverse)
 ```
 
+    ## Warning: package 'tidyverse' was built under R version 3.2.5
+
+    ## Loading tidyverse: ggplot2
+    ## Loading tidyverse: tibble
+    ## Loading tidyverse: tidyr
+    ## Loading tidyverse: readr
+    ## Loading tidyverse: purrr
+    ## Loading tidyverse: dplyr
+
+    ## Warning: package 'ggplot2' was built under R version 3.2.4
+
+    ## Warning: package 'tibble' was built under R version 3.2.5
+
+    ## Warning: package 'tidyr' was built under R version 3.2.5
+
+    ## Warning: package 'readr' was built under R version 3.2.5
+
+    ## Warning: package 'purrr' was built under R version 3.2.5
+
+    ## Warning: package 'dplyr' was built under R version 3.2.5
+
+    ## Conflicts with tidy packages ----------------------------------------------
+
+    ## filter(): dplyr, stats
+    ## lag():    dplyr, stats
+
 ``` r
 tdf = tibble(x = 1:1e4, y = rnorm(1e4))  # == data_frame(x = 1:1e4, y = rnorm(1e4))
 class(tdf)
@@ -81,16 +107,16 @@ tdf
     ## # A tibble: 10,000 × 2
     ##        x          y
     ##    <int>      <dbl>
-    ## 1      1  1.7307583
-    ## 2      2  1.4246209
-    ## 3      3  0.2762850
-    ## 4      4  1.9267297
-    ## 5      5  1.8189041
-    ## 6      6  1.1574624
-    ## 7      7  0.1248573
-    ## 8      8 -0.1066158
-    ## 9      9 -0.7412011
-    ## 10    10 -0.9383221
+    ## 1      1 -0.3925671
+    ## 2      2  0.1703861
+    ## 3      3  0.4583199
+    ## 4      4 -1.2424335
+    ## 5      5 -1.1806229
+    ## 6      6  0.2770036
+    ## 7      7 -1.1615956
+    ## 8      8  1.1410134
+    ## 9      9  0.0126514
+    ## 10    10  0.1164728
     ## # ... with 9,990 more rows
 
 -   Can customize print methods with `print(tdf, n = rows, width = cols)`
@@ -178,77 +204,28 @@ Four core "verbs": filter, select, arrange, group\_by + summarize, plus many mor
 
 ``` r
 library(ggplot2movies)
+```
+
+    ## Error in library(ggplot2movies): there is no package called 'ggplot2movies'
+
+``` r
 str(movies)
 ```
 
-    ## Classes 'tbl_df', 'tbl' and 'data.frame':    58788 obs. of  24 variables:
-    ##  $ title      : chr  "$" "$1000 a Touchdown" "$21 a Day Once a Month" "$40,000" ...
-    ##  $ year       : int  1971 1939 1941 1996 1975 2000 2002 2002 1987 1917 ...
-    ##  $ length     : int  121 71 7 70 71 91 93 25 97 61 ...
-    ##  $ budget     : int  NA NA NA NA NA NA NA NA NA NA ...
-    ##  $ rating     : num  6.4 6 8.2 8.2 3.4 4.3 5.3 6.7 6.6 6 ...
-    ##  $ votes      : int  348 20 5 6 17 45 200 24 18 51 ...
-    ##  $ r1         : num  4.5 0 0 14.5 24.5 4.5 4.5 4.5 4.5 4.5 ...
-    ##  $ r2         : num  4.5 14.5 0 0 4.5 4.5 0 4.5 4.5 0 ...
-    ##  $ r3         : num  4.5 4.5 0 0 0 4.5 4.5 4.5 4.5 4.5 ...
-    ##  $ r4         : num  4.5 24.5 0 0 14.5 14.5 4.5 4.5 0 4.5 ...
-    ##  $ r5         : num  14.5 14.5 0 0 14.5 14.5 24.5 4.5 0 4.5 ...
-    ##  $ r6         : num  24.5 14.5 24.5 0 4.5 14.5 24.5 14.5 0 44.5 ...
-    ##  $ r7         : num  24.5 14.5 0 0 0 4.5 14.5 14.5 34.5 14.5 ...
-    ##  $ r8         : num  14.5 4.5 44.5 0 0 4.5 4.5 14.5 14.5 4.5 ...
-    ##  $ r9         : num  4.5 4.5 24.5 34.5 0 14.5 4.5 4.5 4.5 4.5 ...
-    ##  $ r10        : num  4.5 14.5 24.5 45.5 24.5 14.5 14.5 14.5 24.5 4.5 ...
-    ##  $ mpaa       : chr  "" "" "" "" ...
-    ##  $ Action     : int  0 0 0 0 0 0 1 0 0 0 ...
-    ##  $ Animation  : int  0 0 1 0 0 0 0 0 0 0 ...
-    ##  $ Comedy     : int  1 1 0 1 0 0 0 0 0 0 ...
-    ##  $ Drama      : int  1 0 0 0 0 1 1 0 1 0 ...
-    ##  $ Documentary: int  0 0 0 0 0 0 0 1 0 0 ...
-    ##  $ Romance    : int  0 0 0 0 0 0 0 0 0 0 ...
-    ##  $ Short      : int  0 0 1 0 0 0 0 1 0 0 ...
+    ## Error in str(movies): object 'movies' not found
 
 ``` r
 filter(movies, length > 360)
 ```
 
-    ## # A tibble: 21 × 24
-    ##                                               title  year length  budget
-    ##                                               <chr> <int>  <int>   <int>
-    ## 1                         Commune (Paris, 1871), La  2000    555      NA
-    ## 2                            Cure for Insomnia, The  1987   5220      NA
-    ## 3             Ebolusyon ng isang pamilyang pilipino  2004    647      NA
-    ## 4                                            Empire  1964    485      NA
-    ## 5                                Farmer's Wife, The  1998    390      NA
-    ## 6                                     Foolish Wives  1922    384 1100000
-    ## 7                                        Four Stars  1967   1100      NA
-    ## 8                 Hitler - ein Film aus Deutschland  1978    407      NA
-    ## 9                               Imitation of Christ  1967    480      NA
-    ## 10 Longest Most Meaningless Movie in the World, The  1970   2880      NA
-    ## # ... with 11 more rows, and 20 more variables: rating <dbl>, votes <int>,
-    ## #   r1 <dbl>, r2 <dbl>, r3 <dbl>, r4 <dbl>, r5 <dbl>, r6 <dbl>, r7 <dbl>,
-    ## #   r8 <dbl>, r9 <dbl>, r10 <dbl>, mpaa <chr>, Action <int>,
-    ## #   Animation <int>, Comedy <int>, Drama <int>, Documentary <int>,
-    ## #   Romance <int>, Short <int>
+    ## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'movies' not found
 
 ``` r
 filter(movies, length > 360) %>%
   select(title, rating, votes)
 ```
 
-    ## # A tibble: 21 × 3
-    ##                                               title rating votes
-    ##                                               <chr>  <dbl> <int>
-    ## 1                         Commune (Paris, 1871), La    7.8    33
-    ## 2                            Cure for Insomnia, The    3.8    59
-    ## 3             Ebolusyon ng isang pamilyang pilipino    8.4     5
-    ## 4                                            Empire    5.5    46
-    ## 5                                Farmer's Wife, The    8.5    52
-    ## 6                                     Foolish Wives    7.6   191
-    ## 7                                        Four Stars    3.0    12
-    ## 8                 Hitler - ein Film aus Deutschland    9.0    70
-    ## 9                               Imitation of Christ    4.4     5
-    ## 10 Longest Most Meaningless Movie in the World, The    6.4    15
-    ## # ... with 11 more rows
+    ## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'movies' not found
 
 ``` r
 filter(movies, Animation == 1, votes > 1000) %>%
@@ -256,20 +233,7 @@ filter(movies, Animation == 1, votes > 1000) %>%
   arrange(desc(rating))
 ```
 
-    ## # A tibble: 135 × 2
-    ##                                   title rating
-    ##                                   <chr>  <dbl>
-    ## 1         Sen to Chihiro no kamikakushi    8.6
-    ## 2                            Duck Amuck    8.4
-    ## 3  Wallace & Gromit: The Wrong Trousers    8.4
-    ## 4                          Finding Nemo    8.3
-    ## 5                        Hotaru no haka    8.3
-    ## 6                      Incredibles, The    8.3
-    ## 7                         Mononoke-hime    8.3
-    ## 8                    What's Opera, Doc?    8.3
-    ## 9                               Vincent    8.2
-    ## 10      Wallace & Gromit: A Close Shave    8.2
-    ## # ... with 125 more rows
+    ## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'movies' not found
 
 `summarize` makes `aggregate` and `tapply` functionality easier, and the output is always a data frame.
 
@@ -281,22 +245,7 @@ filter(movies, mpaa != "") %>%
   arrange(desc(year), mpaa)
 ```
 
-    ## Source: local data frame [128 x 4]
-    ## Groups: year [54]
-    ## 
-    ##     year  mpaa avg_budget avg_rating
-    ##    <int> <chr>      <dbl>      <dbl>
-    ## 1   2005 NC-17        NaN   6.700000
-    ## 2   2005    PG   45857143   5.733333
-    ## 3   2005 PG-13   42269333   5.326087
-    ## 4   2005     R   24305882   4.595833
-    ## 5   2004    PG   45126852   5.847619
-    ## 6   2004 PG-13   46288254   6.080180
-    ## 7   2004     R   19548519   5.848469
-    ## 8   2003    PG   37057692   5.897674
-    ## 9   2003 PG-13   46269491   5.949038
-    ## 10  2003     R   21915505   5.702273
-    ## # ... with 118 more rows
+    ## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'movies' not found
 
 `count` for frequency tables. Note the consistent API and easy readability vs. `table`.
 
@@ -305,47 +254,19 @@ filter(movies, mpaa != "") %>%
   count(year, mpaa, Animation, sort = TRUE)
 ```
 
-    ## Source: local data frame [156 x 4]
-    ## Groups: year, mpaa [128]
-    ## 
-    ##     year  mpaa Animation     n
-    ##    <int> <chr>     <int> <int>
-    ## 1   1999     R         0   366
-    ## 2   2001     R         0   355
-    ## 3   2002     R         0   343
-    ## 4   2000     R         0   341
-    ## 5   1998     R         0   335
-    ## 6   1997     R         0   325
-    ## 7   1996     R         0   310
-    ## 8   1995     R         0   293
-    ## 9   2003     R         0   264
-    ## 10  2004     R         0   196
-    ## # ... with 146 more rows
+    ## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'movies' not found
 
 ``` r
 basetab = with(movies[movies$mpaa != "", ], table(year, mpaa, Animation))
+```
+
+    ## Error in with(movies[movies$mpaa != "", ], table(year, mpaa, Animation)): object 'movies' not found
+
+``` r
 basetab[1:5, , ]
 ```
 
-    ## , , Animation = 0
-    ## 
-    ##       mpaa
-    ## year   NC-17 PG PG-13 R
-    ##   1934     0  1     0 0
-    ##   1938     0  1     0 0
-    ##   1945     0  0     1 0
-    ##   1946     0  1     0 0
-    ##   1951     0  2     0 0
-    ## 
-    ## , , Animation = 1
-    ## 
-    ##       mpaa
-    ## year   NC-17 PG PG-13 R
-    ##   1934     0  0     0 0
-    ##   1938     0  0     0 0
-    ##   1945     0  0     0 0
-    ##   1946     0  0     0 0
-    ##   1951     0  0     0 0
+    ## Error in eval(expr, envir, enclos): object 'basetab' not found
 
 ### joins
 
@@ -383,18 +304,18 @@ data_frame(group = sample(letters[1:3], 10, replace = TRUE),
     ## Source: local data frame [10 x 3]
     ## Groups: group [3]
     ## 
-    ##    group       value group_average
-    ##    <chr>       <dbl>         <dbl>
-    ## 1      b -0.07744649   -0.61076927
-    ## 2      c  0.11825771    0.08865786
-    ## 3      c  0.58866540    0.08865786
-    ## 4      c  0.27584554    0.08865786
-    ## 5      b -0.80187845   -0.61076927
-    ## 6      c -0.33398635    0.08865786
-    ## 7      c -0.20549302    0.08865786
-    ## 8      b -0.95298286   -0.61076927
-    ## 9      a -0.48253785   -0.68985472
-    ## 10     a -0.89717159   -0.68985472
+    ##    group        value group_average
+    ##    <chr>        <dbl>         <dbl>
+    ## 1      a -0.053153527   0.604539161
+    ## 2      b  0.151062399   0.063660081
+    ## 3      a  0.044527046   0.604539161
+    ## 4      a  0.477646082   0.604539161
+    ## 5      c  0.009075314   0.009075314
+    ## 6      a  1.949137041   0.604539161
+    ## 7      b -0.533904171   0.063660081
+    ## 8      b -0.419352794   0.063660081
+    ## 9      b  0.433994233   0.063660081
+    ## 10     b  0.686500737   0.063660081
 
 `tidyr`
 -------
@@ -494,7 +415,7 @@ system.time(
 ```
 
     ##    user  system elapsed 
-    ##   2.579   0.084   2.704
+    ##   3.033   0.104   3.220
 
 ``` r
 system.time(
@@ -503,16 +424,16 @@ system.time(
 ```
 
     ##    user  system elapsed 
-    ##   0.819   0.069   0.940
+    ##   0.953   0.072   1.100
 
 ``` r
 read.csv("base-write.csv", nrows = 3)
 ```
 
     ##   X int squares letters
-    ## 1 1   1       1       h
-    ## 2 2   2       4       d
-    ## 3 3   3       9       m
+    ## 1 1   1       1       x
+    ## 2 2   2       4       f
+    ## 3 3   3       9       p
 
 ``` r
 read_csv("readr-write.csv", n_max = 3)
@@ -528,9 +449,9 @@ read_csv("readr-write.csv", n_max = 3)
     ## # A tibble: 3 × 3
     ##     int squares letters
     ##   <int>   <dbl>   <chr>
-    ## 1     1       1       h
-    ## 2     2       4       d
-    ## 3     3       9       m
+    ## 1     1       1       x
+    ## 2     2       4       f
+    ## 3     3       9       p
 
 `broom`
 -------
@@ -549,13 +470,18 @@ qplot(x, y, data = d)
 
 ``` r
 library(broom)  # Not attached with tidyverse
+```
+
+    ## Warning: package 'broom' was built under R version 3.2.5
+
+``` r
 model = lm(y ~ x, d)
 tidy(model)
 ```
 
-    ##          term    estimate  std.error   statistic      p.value
-    ## 1 (Intercept) -0.02212952 0.32815614 -0.06743595 9.469781e-01
-    ## 2           x  2.04880361 0.06368259 32.17211622 2.328477e-17
+    ##          term  estimate  std.error statistic      p.value
+    ## 1 (Intercept) 0.5401569 0.47275860  1.142564 2.681904e-01
+    ## 2           x 1.9396876 0.08020138 24.185213 3.542229e-15
 
 ### `augment`
 
@@ -567,47 +493,47 @@ aug
 ```
 
     ##            y         x   .fitted   .se.fit      .resid       .hat
-    ## 1   4.365310 2.2167792  4.519616 0.2190258 -0.15430550 0.08531087
-    ## 2  10.183616 5.4172613 11.076775 0.1790893 -0.89315878 0.05703654
-    ## 3   7.215538 3.2282729  6.591968 0.1843041  0.62357006 0.06040652
-    ## 4  16.104626 7.9968916 16.361931 0.2823602 -0.25730454 0.14178182
-    ## 5  15.469541 8.0496637 16.470051 0.2850711 -1.00050940 0.14451735
-    ## 6   1.777862 0.5917886  1.190329 0.2963871  0.58753261 0.15621841
-    ## 7  14.792232 7.4687935 15.279961 0.2560816 -0.48772985 0.11661935
-    ## 8   7.947098 3.9047317  7.977899 0.1709766 -0.03080099 0.05198605
-    ## 9   6.652823 3.3824637  6.907874 0.1804498 -0.25505137 0.05790640
-    ## 10 16.466676 7.2607843 14.853792 0.2462225  1.61288435 0.10781254
-    ## 11  9.147981 4.6081148  9.418993 0.1680642 -0.27101132 0.05023009
-    ## 12  7.045629 3.8482676  7.862215 0.1717156 -0.81658622 0.05243644
-    ## 13 15.521358 7.3811829 15.100465 0.2518912  0.42089305 0.11283397
-    ## 14  2.047400 0.9682785  1.961683 0.2769494  0.08571719 0.13640005
-    ## 15  1.924992 1.2773890  2.594990 0.2615541 -0.66999792 0.12165693
-    ## 16  6.737163 3.0714391  6.270646 0.1886685  0.46651671 0.06330129
-    ## 17  1.835538 0.9904465  2.007101 0.2758271 -0.17156311 0.13529686
-    ## 18  3.904365 1.8833655  3.836516 0.2332531  0.06784899 0.09675390
-    ## 19 16.870169 8.4911367 17.374542 0.3082513 -0.50437308 0.16897542
-    ## 20 15.051012 6.5529524 13.403583 0.2154124  1.64742911 0.08251922
+    ## 1  14.939715 7.7031230 15.481809 0.3067454 -0.54209376 0.08976907
+    ## 2  19.453616 8.9366797 17.874523 0.3798398  1.57909318 0.13764858
+    ## 3  10.983276 5.7467774 11.687109 0.2337569 -0.70383371 0.05213144
+    ## 4  10.578541 5.0227490 10.282721 0.2291831  0.29582007 0.05011132
+    ## 5   7.897853 4.2436170  8.771448 0.2403737 -0.87359509 0.05512451
+    ## 6   5.472039 1.6509294  3.742444 0.3626245  1.72959500 0.12545413
+    ## 7  10.348904 5.7562274 11.705440 0.2339114 -1.35653528 0.05220034
+    ## 8   2.733152 1.1645416  2.799004 0.3936482 -0.06585202 0.14783842
+    ## 9   2.087966 0.7468928  1.988896 0.4213480  0.09907028 0.16937628
+    ## 10 14.020696 7.1408441 14.391163 0.2787691 -0.37046728 0.07414126
+    ## 11  6.470850 3.4686905  7.268333 0.2659926 -0.79748268 0.06750094
+    ## 12  3.082145 0.7509438  1.996753 0.4210753  1.08539155 0.16915709
+    ## 13 17.936791 9.2235352 18.430933 0.3984394 -0.49414199 0.15145909
+    ## 14 17.676693 8.5718252 17.166820 0.3569257  0.50987348 0.12154202
+    ## 15 18.702096 9.6457384 19.249876 0.4265974 -0.54778002 0.17362297
+    ## 16 17.129046 7.4794327 15.047919 0.2951083  2.08112620 0.08308710
+    ## 17  4.545379 2.8544646  6.076926 0.2941475 -1.53154765 0.08254696
+    ## 18  5.601788 2.5988599  5.581133 0.3074341  0.02065519 0.09017262
+    ## 19 12.554456 5.9801379 12.139756 0.2382474  0.41470001 0.05415358
+    ## 20  8.664315 4.4626534  9.196310 0.2356124 -0.53199547 0.05296230
     ##       .sigma      .cooksd  .std.resid
-    ## 1  0.7706297 2.158758e-03 -0.21515503
-    ## 2  0.7386729 4.549928e-02 -1.22655805
-    ## 3  0.7556838 2.365691e-02  0.85787128
-    ## 4  0.7686765 1.133193e-02 -0.37038676
-    ## 5  0.7256519 1.757615e-01 -1.44252197
-    ## 6  0.7558680 6.734724e-02  0.85295049
-    ## 7  0.7612891 3.160947e-02 -0.69200983
-    ## 8  0.7715844 4.879446e-05 -0.04218560
-    ## 9  0.7689861 3.773788e-03 -0.35041888
-    ## 10 0.6510658 3.132905e-01  2.27709965
-    ## 11 0.7686693 3.636518e-03 -0.37083874
-    ## 12 0.7443161 3.462616e-02 -1.11867707
-    ## 13 0.7639734 2.258173e-02  0.59590381
-    ## 14 0.7712982 1.194837e-03  0.12300378
-    ## 15 0.7518898 6.294179e-02 -0.95334091
-    ## 16 0.7627149 1.396146e-02  0.64279740
-    ## 17 0.7703240 4.735711e-03 -0.24603520
-    ## 18 0.7714283 4.854302e-04  0.09520224
-    ## 19 0.7598647 5.534563e-02 -0.73782239
-    ## 20 0.6491487 2.365693e-01  2.29358645
+    ## 1  1.0444280 0.0151884359 -0.55498847
+    ## 2  0.9693965 0.2201706194  1.66092859
+    ## 3  1.0387868 0.0137114782 -0.70612461
+    ## 4  1.0509052 0.0023183893  0.29646718
+    ## 5  1.0306840 0.0224779453 -0.87782559
+    ## 6  0.9532089 0.2340719251  1.80650210
+    ## 7  0.9978040 0.0510085660 -1.36100012
+    ## 8  1.0533383 0.0004211360 -0.06967765
+    ## 9  1.0531504 0.0011494005  0.10617605
+    ## 10 1.0493336 0.0056625347 -0.37606493
+    ## 11 1.0342642 0.0235502885 -0.80664492
+    ## 12 1.0131206 0.1377101409  1.16308732
+    ## 13 1.0454156 0.0245015751 -0.52396312
+    ## 14 1.0451855 0.0195321482  0.53135806
+    ## 15 1.0432937 0.0363918210 -0.58857582
+    ## 16 0.9121211 0.2041808245  2.12285202
+    ## 17 0.9795038 0.1097324641 -1.56179468
+    ## 18 1.0534673 0.0000221695  0.02115121
+    ## 19 1.0483918 0.0049658626  0.41649431
+    ## 20 1.0451037 0.0079723958 -0.53396113
 
 ``` r
 ggplot(aug, aes(x = x)) +
@@ -640,19 +566,19 @@ df$comp_time
 
     ## [[1]]
     ##    user  system elapsed 
-    ##   0.042   0.003   0.046 
+    ##   0.044   0.002   0.046 
     ## 
     ## [[2]]
     ##    user  system elapsed 
-    ##   0.055   0.001   0.059 
+    ##   0.046   0.000   0.046 
     ## 
     ## [[3]]
     ##    user  system elapsed 
-    ##  12.366   0.218  12.612 
+    ##  15.091   0.598  16.267 
     ## 
     ## [[4]]
     ##    user  system elapsed 
-    ##   8.572   0.117   8.742
+    ##  10.902   0.553  11.904
 
 ### `map`
 
@@ -765,24 +691,7 @@ movies %>%
   arrange(term)
 ```
 
-    ##   mpaa-rating        term      estimate    std.error   statistic
-    ## 1       NC-17 (Intercept)  6.505809e+00 3.124604e-01  20.8212250
-    ## 2          PG (Intercept)  5.768036e+00 1.368008e-01  42.1637635
-    ## 3       PG-13 (Intercept)  5.749256e+00 7.809921e-02  73.6147735
-    ## 4           R (Intercept)  5.814014e+00 5.238965e-02 110.9764024
-    ## 5       NC-17      budget -6.046148e-08 1.835425e-08  -3.2941404
-    ## 6          PG      budget  2.028426e-09 2.745805e-09   0.7387365
-    ## 7       PG-13      budget  3.493136e-09 1.443405e-09   2.4200674
-    ## 8           R      budget  7.732453e-09 1.658841e-09   4.6613582
-    ##         p.value
-    ## 1  4.732587e-06
-    ## 2 1.856102e-104
-    ## 3 8.291365e-280
-    ## 4  0.000000e+00
-    ## 5  2.161461e-02
-    ## 6  4.608918e-01
-    ## 7  1.585419e-02
-    ## 8  3.540387e-06
+    ## Error in eval(expr, envir, enclos): object 'movies' not found
 
 List-columns make it easier to organize complex datasets. Can `map` over list-columns right in `data_frame`/`tibble` creation. And if you later want to calculate something else, everything is nicely organized in the data frame.
 
@@ -800,11 +709,11 @@ d
 ```
 
     ## # A tibble: 3 × 6
-    ##         dist   funs     samples     mean        var   median
-    ##        <chr> <list>      <list>    <dbl>      <dbl>    <dbl>
-    ## 1     normal  <fun> <dbl [100]> 4.897684  0.9952718 4.910766
-    ## 2    poisson  <fun> <int [100]> 4.990000  4.1716162 5.000000
-    ## 3 chi-square  <fun> <dbl [100]> 5.466018 12.3804613 4.923235
+    ##         dist   funs     samples     mean       var   median
+    ##        <chr> <list>      <list>    <dbl>     <dbl>    <dbl>
+    ## 1     normal  <fun> <dbl [100]> 4.966141  1.104898 5.051476
+    ## 2    poisson  <fun> <int [100]> 5.300000  4.212121 5.000000
+    ## 3 chi-square  <fun> <dbl [100]> 5.396859 10.692450 5.100152
 
 Let's see if we can really make this purrr... Fit a linear model of diamond price by every combination of two predictors in the dataset and see which two predict best.
 
@@ -824,16 +733,16 @@ setdiff(names(diamonds), "price") %>%
     ## # A tibble: 36 × 2
     ##         predictors     rmse
     ##              <chr>    <dbl>
-    ## 1  carat + clarity 1296.010
-    ## 2    carat + color 1474.577
-    ## 3      carat + cut 1518.669
-    ## 4        carat + x 1530.131
-    ## 5        carat + y 1545.970
-    ## 6    carat + depth 1546.579
-    ## 7    carat + table 1549.821
-    ## 8        carat + z 1557.959
-    ## 9      clarity + x 1672.964
-    ## 10     clarity + y 1689.942
+    ## 1  carat + clarity 1283.460
+    ## 2    carat + color 1455.831
+    ## 3      carat + cut 1497.130
+    ## 4        carat + x 1515.694
+    ## 5        carat + y 1525.305
+    ## 6    carat + table 1525.514
+    ## 7    carat + depth 1528.071
+    ## 8        carat + z 1551.428
+    ## 9      clarity + x 1658.299
+    ## 10     clarity + y 1668.496
     ## # ... with 26 more rows
 
 ### Type-stability
@@ -947,6 +856,11 @@ All your string manipulation and regex functions with a consistent API.
 
 ``` r
 library(stringr)  # not attached with tidyverse
+```
+
+    ## Warning: package 'stringr' was built under R version 3.2.5
+
+``` r
 fishes <- c("one fish", "two fish", "red fish", "blue fish")
 str_detect(fishes, "two")
 ```

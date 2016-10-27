@@ -8,7 +8,6 @@ output:
      default: TRUE
      self_contained: TRUE
      keep_md: true
-     github_document:
 link-citations: yes
 ---
 ```{r setup, include=FALSE}

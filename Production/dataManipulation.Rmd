@@ -1,0 +1,37 @@
+---
+title: "R Notebook: Tidyverse"
+subtitle: "An implementation in R Markdown"
+author: "Hari Subhash"
+date: "`r Sys.Date()`"
+output:
+  github_document: default
+  html_notebook: default
+---
+
+The tidyverse is an evolving attempt to create an overarching philosophy to guide the development of new packages in R. It is a suite of 18 packages (listed b# invalidate cache when the tufte version changes
+elow) that have been developed to work in harmony with one another and follow a tidy philosophy. These packages cover about 95% of R functionality and more packages continue to be added to it.
+
+* Core packages: ggplot2, dplyr, tidyr, readr, purrr, tibble
+* Specialized data manipulation: hms, stringr, lubridate, forcats
+* Data import: DBI, haven, httr, jsonlite, readxl, rvest, xml2
+* Modeling: modelr, broom
+
+# Piping
+`%>%` is a core feature of the tidyverse. It allows us to break complex bits of code into smaller bits that are easier to read and debug. It also comes with the added benefit of not storing too many intermediate variables. Say for instance, we want to compare to find the square root of the first 200 odd numbers.
+
+```{r pipes, message=FALSE, warning=FALSE}
+# Base version
+sqrt(sum(seq(from = 1, to = 200, by = 2)))
+
+# dplyr verstion
+library(tidyverse)
+seq(from = 1, to = 200, by = 2) %>%
+        sum() %>%
+        sqrt()
+```
+
+The dplyr version is arguably easier to maintain and read.
+
+# Data Manipulation with dplyr
+dplyr is a package that provides 5 verbs and several other utility functions to perform common data manipulation tasks. First we will go through verbs individually using the flights dataset.
+
