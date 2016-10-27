@@ -1,0 +1,50 @@
+---
+title: "R Notebook: Week 2"
+subtitle: "Tidying and Manipulating Data"
+author: "Hari Subhash"
+date: "`r Sys.Date()`"
+output:
+  tint::tintHtml: 
+     default: TRUE
+     self_contained: TRUE
+link-citations: yes
+---
+```{r setup, include=FALSE}
+rm(list = ls())
+library(tint)
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tint'))
+options(htmltools.dir.version = FALSE)
+```
+
+`r margin_note("The world of R till recently, was a bit like the Wild West. There was a steady rush of R pioneers who developed packages that extended R's capacity. However, as the number of packages increased, the lack of an overarching guiding philosophy led to inconsistencies in design and syntax across packages that multiplied the time and effort users had to spend to learn each new package with its own set of rules and principles.")`
+
+`r newthought('The tidyverse')` is an evolving attempt to create an overarching philosophy to guide the development of new packages in R. It is a suite of 18 packages (listed b# invalidate cache when the tufte version changes
+elow) that have been developed to work in harmony with one another and follow a tidy philosophy. These packages cover about 95% of R functionality and more packages continue to be added to it. ^[[Tidyverse guiding principles](https://mran.microsoft.com/web/packages/tidyverse/vignettes/manifesto.html)] 
+
+* Core packages: ggplot2, dplyr, tidyr, readr, purrr, tibble
+* Specialized data manipulation: hms, stringr, lubridate, forcats
+* Data import: DBI, haven, httr, jsonlite, readxl, rvest, xml2
+* Modeling: modelr, broom
+
+# How do we get started?
+First thing to do is to get these packages installed. Luckily, we don't need to install them individually. 'tidyverse' is also a package that installs all of them in one shot. So go into your console and type in `install.packages(tidyverse)`. This will install all the packages in the tidyverse along with their dependencies. `library(tidyverse)` will load only the core packages in the tidyverse `r margin_note("i.e ggplot2, dplyr, tidyr, readr, purrr, tibble")` and is an easy way to start all projects.
+
+# Piping
+`%>%` is a core feature of the tidyverse. It allows us to break complex bits of code into smaller bits that are easier to read and debug. It also comes with the added benefit of not storing too many intermediate variables. Say for instance, we want to compare to find the square root of the first 200 odd numbers. ^[[More on Piping](http://r4ds.had.co.nz/pipes.html)] 
+
+```{r pipes, message=FALSE, warning=FALSE}
+# Base version
+sqrt(sum(seq(from = 1, to = 200, by = 2)))
+
+# dplyr verstion
+library(tidyverse)
+seq(from = 1, to = 200, by = 2) %>%
+        sum() %>%
+        sqrt()
+```
+
+The dplyr version is arguably easier to maintain and read.
+
+
+
