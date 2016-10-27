@@ -7,6 +7,7 @@ output:
   tint::tintHtml: 
      default: TRUE
      self_contained: TRUE
+     keep_md: TRUE
 link-citations: yes
 ---
 ```{r setup, include=FALSE}
@@ -45,6 +46,14 @@ seq(from = 1, to = 200, by = 2) %>%
 ```
 
 The dplyr version is arguably easier to maintain and read.
+
+# Data Manipulation with dplyr
+dplyr is a package that provides 5 verbs and several other utility functions to perform common data manipulation tasks. First we will go through verbs individually using the flights dataset.
+
+```{r}
+
+```
+
 
 
 
